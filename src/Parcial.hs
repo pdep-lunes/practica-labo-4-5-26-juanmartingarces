@@ -6,10 +6,10 @@ doble = (*2)
 
 
 data Perros = UnPerrito{
-    raza = String,
-    jugutesFav = [String],
-    tiempo = int,
-    energia = int
+    raza :: String,
+    jugutesFav :: [String],
+    tiempo :: Int,
+    energia :: Int
 } deriving (Show)
 
 modificarEnergia :: (Int->Int) -> Perros -> Perros
@@ -33,10 +33,6 @@ ladrar cant unPerro = modificarEnergia (+ (cant/2)) unPerro
 regalar :: String -> Perros -> Perros
 -- regalar juguetito unPerro = unPerro {jugueteFav = juguetito : jugueteFav unPerro }
 regalar juguetito unPerro = modificarJuguete (juguetito :) unPerro
-
-(:) :: a -> [a] -> [a]
-(:) :: Str -> [Str] -> [Str]
-(juguetito :) :: [Str] -> [Str]
 
 razaExtravagante :: String -> Bool
 razaExtravagante "Dalmata" = True
