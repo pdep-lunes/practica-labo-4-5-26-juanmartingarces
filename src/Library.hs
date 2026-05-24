@@ -37,3 +37,4 @@ diaDeSpa unPerro
 
 diaDeCampo :: Perros -> Perros
 diaDeCampo unPerro = modificarJuguete (drop 1) unPerro
+--hola
