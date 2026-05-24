@@ -1,0 +1,7 @@
+cradle:
+  stack:
+    - path: "./src"
+      component: "pdeperritos-nuevo:lib"
+
+    - path: "./test"
+      component: "pdeperritos-nuevo:test:pdeperritos-nuevo-test"

@@ -1,37 +1,28 @@
-module Parcial where
-import Text.Show.Functions()
+module Library where
+import PdePreludat
 
-doble :: Int -> Int
-doble = (*2)
-
-
+doble :: Number -> Number
+doble numero = numero + numero
 data Perros = UnPerrito{
     raza :: String,
-    jugutesFav :: [String],
-    tiempo :: Int,
-    energia :: Int
+    juguetesFav :: [String],
+    tiempo :: Number,
+    energia :: Number
 } deriving (Show)
 
-modificarEnergia :: (Int->Int) -> Perros -> Perros
+modificarEnergia :: (Number->Number) -> Perros -> Perros
 modificarEnergia unaFuncion unPerro = unPerro{energia = max 0 . unaFuncion . energia $ unPerro }
 
 modificarJuguete :: ([String]->[String]) ->Perros->Perros
-modifcarJuguetes otraFuncion unPerro = unPerro{juguetesFav = otraFuncion . juguetesFav $ unPerro}
-data Algo = UnAlgo {
-    a :: Tipo
-}
-
-modificarA :: (Tipo -> Tipo) -> Algo -> Algo
- 
+modificarJuguete otraFuncion unPerro = unPerro{juguetesFav = otraFuncion . juguetesFav $ unPerro}
 
 jugar :: Perros -> Perros
 jugar unPerro = modificarEnergia (subtract 10) unPerro
 
-ladrar :: Int -> Perros -> Perros
+ladrar :: Number -> Perros -> Perros
 ladrar cant unPerro = modificarEnergia (+ (cant/2)) unPerro
 
 regalar :: String -> Perros -> Perros
--- regalar juguetito unPerro = unPerro {jugueteFav = juguetito : jugueteFav unPerro }
 regalar juguetito unPerro = modificarJuguete (juguetito :) unPerro
 
 razaExtravagante :: String -> Bool
@@ -45,5 +36,4 @@ diaDeSpa unPerro
     | otherwise = unPerro
 
 diaDeCampo :: Perros -> Perros
-diaDeCampo unPerro = modificarJuguetes (drop 1) unPerro
-    --unPerro{jugueteFav = drop 1 juguetesFav}
+diaDeCampo unPerro = modificarJuguete (drop 1) unPerro

@@ -1,18 +1,28 @@
-name:                parcial-funcional
+name:                pdeperritos-nuevo
 version:             0.1.0.0
-github:              "pdep-lunes/parcial-funcional"
+github:              "githubuser/pdeperritos-nuevo"
 license:             BSD3
-author:              "PdeP Lunes"
-maintainer:          "pdep-lunes"
-copyright:           "2020 pdep-lunes utn-frba"
+author:              "Author name here"
+maintainer:          "example@example.com"
+copyright:           "2019 Author name here"
 
 extra-source-files:
-- readme.md
+- README.md
+- ChangeLog.md
 
-description:         Please see the README on GitHub at <https://github.com/pdep-lunes/parcial-funcional#readme>
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            Web
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on GitHub at <https://github.com/githubuser/pdeperritos-nuevo#readme>
 
 dependencies:
 - base >= 4.7 && < 5
+- pdeprelude
+- hspec
 
 default-extensions:
   - NoImplicitPrelude
@@ -21,15 +31,16 @@ default-extensions:
 
 library:
   source-dirs: src
+  other-modules: []
 
 tests:
-  parcial-funcional-test:
-    main:                Spec.hs
+  pdeperritos-nuevo-test:
+    main:                CorrerTests.hs
     source-dirs:         test
     ghc-options:
     - -threaded
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
-    - parcial-funcional
-    - hspec
+    - pdeperritos-nuevo
+
