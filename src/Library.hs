@@ -60,7 +60,7 @@ perrosResponsables unPerro = (> 3) . length . juguetesFav . diaDeCampo $ unPerro
 
 realizarRutina :: Guarderia -> Perros -> Perros
 realizarRutina unaGuarderia unPerro
-    | puedeEstar unaGarderia unPerro = ejecutarRutina unaGuarderia unPerro
+    | puedeEstar unaGuarderia unPerro = ejecutarRutina unaGuarderia unPerro
     | otherwise = unPerro
 
 ejecutarRutina :: Guarderia -> Perros -> Perros
