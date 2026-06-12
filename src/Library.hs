@@ -37,4 +37,38 @@ diaDeSpa unPerro
 
 diaDeCampo :: Perros -> Perros
 diaDeCampo unPerro = modificarJuguete (drop 1) unPerro
---hola
+
+zara :: Perros 
+zara = UnPerrito "Dalmata" ["Pelota", "mantita"] 90 80
+
+data Guarderia = UnaGuarderia {
+    nombre :: String,
+    actividades :: [(Perros -> Perros, Number)]
+} deriving (Show)
+
+guarderiaPdePerritos :: Guarderia
+guarderiaPdePerritos = UnaGuarderia "PdePerritos" [(jugar, 30), (ladrar 18, 20), (regalar "pelota", 0), (diaDeSpa, 120), (diaDeCampo, 720)]
+
+tiempoTotal :: Guarderia -> Number
+tiempoTotal unaGuarderia = sum . map snd . actividades $ unaGuarderia
+
+puedeEstar:: Guarderia -> Perros -> Bool
+puedeEstar unaGuarderia unPerro = tiempoTotal unaGuarderia < tiempo unPerro
+
+perrosResponsables :: Perros -> Bool
+perrosResponsables unPerro = (> 3) . length . juguetesFav . diaDeCampo $ unPerro
+
+realizarRutina :: Guarderia -> Perros -> Perros
+realizarRutina unaGuarderia unPerro
+    | puedeEstar unaGarderia unPerro = ejecutarRutina unaGuarderia unPerro
+    | otherwise = unPerro
+
+ejecutarRutina :: Guarderia -> Perros -> Perros
+ejecutarRutina unaGuarderia = foldr (.) id (map fst . actividades $ unaGuarderia)
+
+evaluarCansados :: Guarderia -> Perros -> Bool
+evaluarCansados unaGuarderia unPerro = 
+    puedeEstar unaGuarderia unPerro && energia (realizarRutina unaGuarderia unPerro) < 5
+
+perrosCansados :: Guarderia -> [Perros] -> [Perros]
+perrosCansados unaGuarderia losPerros = filter (evaluarCansados unaGuarderia) losPerros
